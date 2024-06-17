@@ -1,5 +1,5 @@
 import React from "react";
-
+import './Signup.css'
 const Signup = () => {
   return (
     <div>
@@ -11,27 +11,29 @@ const Signup = () => {
                 <div className="card-body p-md-5">
                   <div className="row justify-content-center">
                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                      <p className="text-center mb-5 mx-1 mx-md-4 mt-4">
-                        Sign up
+                      <p className="text-center mb-5 mx-1 mx-md-4 mt-4 text-lg">
+                        Welcome <br />{" "}
+                        <span className="fw-bold h1 heading">RetroBrew</span>
                       </p>
+
                       <form className="mx-1 mx-md-4">
                         <div className="d-flex flex-row align-items-center mb-4">
-                          <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                          <i class="bi bi-person bi-lg me-3 bi-fw"></i>
                           <div
                             data-mdb-input-init
                             className="form-outline flex-fill mb-0"
                           >
-                            <input
-                              type="text"
-                              id="form3Example1c"
-                              className="form-control"
-                            />
                             <label
                               className="form-label"
                               htmlFor="form3Example1c"
                             >
                               Your Name
                             </label>
+                            <input
+                              type="text"
+                              id="form3Example1c"
+                              className="form-control"
+                            />
                           </div>
                         </div>
                         <div className="d-flex flex-row align-items-center mb-4">
@@ -40,17 +42,17 @@ const Signup = () => {
                             data-mdb-input-init
                             className="form-outline flex-fill mb-0"
                           >
+                            <label
+                              className="form-label"
+                              htmlFor="form3Example1c"
+                            >
+                              Your Email
+                            </label>
                             <input
                               type="email"
                               id="form3Example3c"
                               className="form-control"
                             />
-                            <label
-                              className="form-label"
-                              htmlFor="form3Example3c"
-                            >
-                              Your Email
-                            </label>
                           </div>
                         </div>
                         <div className="d-flex flex-row align-items-center mb-4">
@@ -59,17 +61,17 @@ const Signup = () => {
                             data-mdb-input-init
                             className="form-outline flex-fill mb-0"
                           >
-                            <input
-                              type="password"
-                              id="form3Example4c"
-                              className="form-control"
-                            />
                             <label
                               className="form-label"
                               htmlFor="form3Example4c"
                             >
                               Password
                             </label>
+                            <input
+                              type="password"
+                              id="form3Example4c"
+                              className="form-control"
+                            />
                           </div>
                         </div>
                         <div className="d-flex flex-row align-items-center mb-4">
@@ -78,17 +80,17 @@ const Signup = () => {
                             data-mdb-input-init
                             className="form-outline flex-fill mb-0"
                           >
-                            <input
-                              type="password"
-                              id="form3Example4cd"
-                              className="form-control"
-                            />
                             <label
                               className="form-label"
                               htmlFor="form3Example4cd"
                             >
                               Repeat your password
                             </label>
+                            <input
+                              type="password"
+                              id="form3Example4cd"
+                              className="form-control"
+                            />
                           </div>
                         </div>
                         <div className="form-check d-flex justify-content-center mb-5">
@@ -106,21 +108,45 @@ const Signup = () => {
                             <a href="#!">Terms of service</a>
                           </label>
                         </div>
+                        <div className="d-flex justify-content-center mx-2 mb-1 mb-lg-4">
+                          <label
+                            className="text-muted"
+                            htmlFor="form2Example3c"
+                          >
+                            Already have an Account{" "}
+                            <a href="/user-login">Login</a>
+                          </label>
+                        </div>
+
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                           <button
-                            type="button"
+                            class="contactButton"
                             data-mdb-button-init
                             data-mdb-ripple-init
-                            className="btn btn-primary btn-lg"
+                            type="button"
                           >
                             Register
+                            <div class="iconButton">
+                              <svg
+                                height="24"
+                                width="24"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                <path
+                                  d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                  fill="currentColor"
+                                ></path>
+                              </svg>
+                            </div>
                           </button>
                         </div>
                       </form>
                     </div>
                     <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                       <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                        src="https://cdn.pixabay.com/photo/2020/04/06/13/37/coffee-5009730_1280.png"
                         className="img-fluid"
                         alt="Sample image"
                       />
