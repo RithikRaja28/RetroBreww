@@ -1,6 +1,34 @@
-import React from "react";
-import './Login.css'
+import React, { useState } from "react";
+import "./Login.css";
+import { Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+import { auth } from "../../components/Authentication/Auth";
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      // Update the user's profile with the name
+      /* await updateProfile(user, {
+        displayName: name,
+      }); */
+
+      console.log("Login Successfully");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <section className="vh-100" style={{ backgroundColor: "#eee" }}>
@@ -11,7 +39,10 @@ const Login = () => {
                 <div className="card-body p-md-5">
                   <div className="row justify-content-center">
                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                      <p className="text-center mb-5 mx-1 mx-md-4 mt-4 text-lg">
+                      <p
+                        className="text-center mb-5 mx-1 mx-md-4 mt-4 text-lg"
+                        style={{ fontFamily: "Roboto" }}
+                      >
                         Welcome <br />{" "}
                         <span
                           className="fw-bold h1"
@@ -21,7 +52,7 @@ const Login = () => {
                         </span>
                       </p>
 
-                      <form className="mx-1 mx-md-4">
+                      <form className="mx-1 mx-md-4" onSubmit={handleLogin}>
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div
@@ -38,6 +69,7 @@ const Login = () => {
                               type="email"
                               id="form3Example3c"
                               className="form-control"
+                              onChange={(e) => setEmail(e.target.value)}
                             />
                           </div>
                         </div>
@@ -57,6 +89,7 @@ const Login = () => {
                               type="password"
                               id="form3Example4c"
                               className="form-control"
+                              onChange={(e) => setPassword(e.target.value)}
                             />
                           </div>
                         </div>
@@ -82,7 +115,7 @@ const Login = () => {
                             htmlFor="form2Example3c"
                           >
                             Don't have an Account{" "}
-                            <a href="/user-signup">Register</a>
+                            <Link to="/user-signup">Register</Link>
                           </label>
                         </div>
 
@@ -91,7 +124,7 @@ const Login = () => {
                             class="contactButton"
                             data-mdb-button-init
                             data-mdb-ripple-init
-                            type="button"
+                            type="submit"
                           >
                             Login
                             <div class="iconButton">
