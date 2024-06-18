@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { auth, db } from "../../components/Authentication/Auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import { auth } from "../../components/Authentication/Auth";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -18,19 +22,51 @@ const Login = () => {
       );
       const user = userCredential.user;
 
-      // Update the user's profile with the name
-      /* await updateProfile(user, {
-        displayName: name,
-      }); */
+      // Check user information from Firestore
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      if (userDoc.exists()) {
+        toast.success("Login Successful!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
 
-      console.log("Login Successfully");
+        // Use setTimeout to delay navigation, ensuring the toast is visible
+        setTimeout(() => {
+          navigate("/retrobrew");
+        }, 3000);
+      } else {
+        toast.error("No user data found in Firestore", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     } catch (err) {
       console.log(err);
+      toast.error("Error logging in", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
   return (
     <>
+      <ToastContainer />
       <section className="vh-100" style={{ backgroundColor: "#eee" }}>
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
@@ -43,7 +79,7 @@ const Login = () => {
                         className="text-center mb-5 mx-1 mx-md-4 mt-4 text-lg"
                         style={{ fontFamily: "Roboto" }}
                       >
-                        Welcome <br />{" "}
+                        Welcome <br />
                         <span
                           className="fw-bold h1"
                           style={{ color: "#A0522D" }}
@@ -51,7 +87,6 @@ const Login = () => {
                           RetroBrew
                         </span>
                       </p>
-
                       <form className="mx-1 mx-md-4" onSubmit={handleLogin}>
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
@@ -93,7 +128,6 @@ const Login = () => {
                             />
                           </div>
                         </div>
-
                         <div className="form-check d-flex justify-content-center mb-5">
                           <input
                             className="form-check-input me-2"
@@ -118,16 +152,15 @@ const Login = () => {
                             <Link to="/user-signup">Register</Link>
                           </label>
                         </div>
-
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                           <button
-                            class="contactButton"
+                            className="contactButton"
                             data-mdb-button-init
                             data-mdb-ripple-init
                             type="submit"
                           >
                             Login
-                            <div class="iconButton">
+                            <div className="iconButton">
                               <svg
                                 height="24"
                                 width="24"

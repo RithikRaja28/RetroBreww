@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import "./Signup.css";
-import { Link } from "react-router-dom";
-import { auth } from "../../components/Authentication/Auth";
+import { Link, useNavigate } from "react-router-dom";
+import { auth, db } from "../../components/Authentication/Auth"; // Adjust this import based on your project structure
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -22,17 +26,49 @@ const Signup = () => {
       // Update the user's profile with the name
       await updateProfile(user, {
         displayName: name,
-        
       });
 
-      console.log("Account created and profile updated");
+      // Store user information in Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        uid: user.uid,
+        displayName: name,
+        email: user.email,
+      });
+
+      toast.success("Account created successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      setTimeout(() => {
+        navigate("/retrobrew");
+      }, 3000);
+
+      console.log(
+        "Account created, profile updated, and info stored in Firestore"
+      );
     } catch (err) {
       console.log(err);
+      toast.error("Failed to create account. Please try again.", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
   return (
     <div>
+      <ToastContainer />
       <section className="vh-100" style={{ backgroundColor: "#eee" }}>
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
