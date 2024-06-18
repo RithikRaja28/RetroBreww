@@ -3,7 +3,10 @@ import {Link} from 'react-router-dom'
 const Navbar = () => {
   return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav
+        class="navbar navbar-expand-lg navbar-light bg-light"
+        
+      >
         <a class="m-1" href="/retrobrew">
           <img
             src="https://www.freepnglogos.com/uploads/coffee-logo-png/coffee-shop-clipart-images-34.png"
@@ -23,7 +26,8 @@ const Navbar = () => {
           }}
           href="#"
         >
-          <span style={{ color: "#A0522D" }}>R</span>etro<span style={{ color: "#A0522D" }}>B</span>rew
+          <span style={{ color: "#A0522D" }}>R</span>etro
+          <span style={{ color: "#A0522D" }}>B</span>rew
         </a>
         <button
           class="navbar-toggler"
