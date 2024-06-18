@@ -13,7 +13,12 @@ const Signup = () => {
                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                       <p className="text-center mb-5 mx-1 mx-md-4 mt-4 text-lg">
                         Welcome <br />{" "}
-                        <span className="fw-bold h1 heading">RetroBrew</span>
+                        <span
+                          className="fw-bold h1"
+                          style={{ color: "#A0522D" }}
+                        >
+                          RetroBrew
+                        </span>
                       </p>
 
                       <form className="mx-1 mx-md-4">
@@ -74,26 +79,8 @@ const Signup = () => {
                             />
                           </div>
                         </div>
-                        <div className="d-flex flex-row align-items-center mb-4">
-                          <i className="fas fa-key fa-lg me-3 fa-fw"></i>
-                          <div
-                            data-mdb-input-init
-                            className="form-outline flex-fill mb-0"
-                          >
-                            <label
-                              className="form-label"
-                              htmlFor="form3Example4cd"
-                            >
-                              Repeat your password
-                            </label>
-                            <input
-                              type="password"
-                              id="form3Example4cd"
-                              className="form-control"
-                            />
-                          </div>
-                        </div>
-                        <div className="form-check d-flex justify-content-center mb-5">
+
+                        <div className="form-check d-flex justify-content-center mb-3">
                           <input
                             className="form-check-input me-2"
                             type="checkbox"
@@ -108,7 +95,7 @@ const Signup = () => {
                             <a href="#!">Terms of service</a>
                           </label>
                         </div>
-                        <div className="d-flex justify-content-center mx-2 mb-1 mb-lg-4">
+                        <div className="d-flex justify-content-center mb-3">
                           <label
                             className="text-muted"
                             htmlFor="form2Example3c"
