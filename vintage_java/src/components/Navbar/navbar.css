@@ -1,15 +1,17 @@
-.user-info {
-  position: relative;
+.navbar {
+  padding: 10px 20px; /* Adjust padding as needed */
 }
 
-.logout-button {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  transform: translateY(10px);
+.navbar-brand {
+  margin-right: 15px; /* Adjust margin as needed */
 }
 
-.user-info:hover .logout-button {
-  display: block;
+.nav-link {
+  margin: 0 10px; /* Adjust margin as needed */
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }

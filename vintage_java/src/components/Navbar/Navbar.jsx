@@ -2,7 +2,8 @@ import React from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../Authentication/Auth"; // Ensure this path is correct
-import "./navbar.css";
+import "./navbar.css"; // Custom CSS for Navbar styling
+
 const Navbar = ({ user }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -53,58 +54,54 @@ const Navbar = ({ user }) => {
       >
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0 justify-content-center">
           <li className="nav-item">
-            <Link className="nav-link active" to="/retrobrew">
+            <Link className="nav-link" to="/retrobrew">
               Home
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link active" to="/">
+            <Link className="nav-link" to="/">
               Brew
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link active" to="/contact">
+            <Link className="nav-link" to="/contact">
               Contact Us
             </Link>
           </li>
         </ul>
-      </div>
       {user && !isAuthPage && (
-        <div className="navbar-text d-flex align-items-center dropdown ml-2">
-          <div
-            className="nav-link dropdown-toggle"
-            id="userDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            style={{ cursor: "pointer" }}
-          >
-            {user.displayName}
-            <img
-              src="https://www.freeiconspng.com/uploads/account-profile-user-icon--icon-search-engine-10.png"
-              alt="avatar"
-              className="avatar m-2"
-              style={{ borderRadius: "50%", width: "30px", height: "30px" }}
-            />
-          </div>
-          <div
-            className="dropdown-menu dropdown-menu-right text-center mt-2"
-            aria-labelledby="userDropdown"
-          >
-            <Link className="dropdown-item" to="/dashboard">
-              Dashboard
-            </Link>
-            <div className="dropdown-divider"></div>
-            <button className="dropdown-item" onClick={handleLogout}>
-              Logout
+        <div className="navbar-text d-flex align-items-center ml-2 m-1">
+          <div className="btn-group dropup">
+            <button
+              type="button"
+              className="btn btn-outline rounded-pill dropdown-toggle d-flex align-items-center m-1"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {user.displayName}
+              <img
+                src="https://www.freeiconspng.com/uploads/account-profile-user-icon--icon-search-engine-10.png"
+                alt="avatar"
+                className="avatar ms-2"
+              />
             </button>
+            <div className="dropdown-menu dropdown-menu-right">
+              <Link className="dropdown-item m-1" to="/dashboard">
+                Dashboard
+              </Link>
+              <div className="dropdown-divider"></div>
+              <button className="dropdown-item m-1" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       )}
+      </div>
       {!user && !isAuthPage && (
         <div>
-          <Link className="btn btn-outline-primary" to="/user-login">
+          <Link className="btn btn-outline-success" to="/user-login">
             Login
           </Link>
         </div>
