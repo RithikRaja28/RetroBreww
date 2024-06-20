@@ -14,6 +14,18 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      toast.error("Please fill in all fields", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -35,7 +47,6 @@ const Login = () => {
           progress: undefined,
         });
 
-        // Use setTimeout to delay navigation, ensuring the toast is visible
         setTimeout(() => {
           navigate("/retrobrew");
         }, 3000);
