@@ -1,10 +1,11 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../Authentication/Auth"; // Ensure this path is correct
-
+import "./navbar.css";
 const Navbar = ({ user }) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = async () => {
     try {
@@ -14,6 +15,9 @@ const Navbar = ({ user }) => {
       console.error("Error logging out:", error);
     }
   };
+
+  const isAuthPage =
+    location.pathname === "/user-login" || location.pathname === "/user-signup";
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -65,23 +69,40 @@ const Navbar = ({ user }) => {
           </li>
         </ul>
       </div>
-      {user ? (
-        <div className="navbar-text d-flex align-items-center">
-          {user.displayName}
-          <img
-            src="https://www.freeiconspng.com/uploads/account-profile-user-icon--icon-search-engine-10.png"
-            alt="avatar"
-            className="avatar m-2"
-            style={{ borderRadius: "50%", width: "30px", height: "30px" }}
-          />
-          <button
-            className="btn btn-outline-secondary ml-3"
-            onClick={handleLogout}
+      {user && !isAuthPage && (
+        <div className="navbar-text d-flex align-items-center dropdown ml-2">
+          <div
+            className="nav-link dropdown-toggle"
+            id="userDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            style={{ cursor: "pointer" }}
           >
-            Logout
-          </button>
+            {user.displayName}
+            <img
+              src="https://www.freeiconspng.com/uploads/account-profile-user-icon--icon-search-engine-10.png"
+              alt="avatar"
+              className="avatar m-2"
+              style={{ borderRadius: "50%", width: "30px", height: "30px" }}
+            />
+          </div>
+          <div
+            className="dropdown-menu dropdown-menu-right text-center mt-2"
+            aria-labelledby="userDropdown"
+          >
+            <Link className="dropdown-item" to="/dashboard">
+              Dashboard
+            </Link>
+            <div className="dropdown-divider"></div>
+            <button className="dropdown-item" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
         </div>
-      ) : (
+      )}
+      {!user && !isAuthPage && (
         <div>
           <Link className="btn btn-outline-primary" to="/user-login">
             Login

@@ -1,0 +1,15 @@
+.user-info {
+  position: relative;
+}
+
+.logout-button {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: translateY(10px);
+}
+
+.user-info:hover .logout-button {
+  display: block;
+}
