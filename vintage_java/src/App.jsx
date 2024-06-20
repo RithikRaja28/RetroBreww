@@ -13,6 +13,7 @@ import { auth } from "./components/Authentication/Auth"; // Ensure this path is 
 import { onAuthStateChanged } from "firebase/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import BrewCoffee from "./components/Brew/BrewCoffee";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -52,6 +53,10 @@ const App = () => {
         <Route
           path="/retrobrew"
           element={user ? <LandingPage /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/brewcoffeee"
+          element={user ? <BrewCoffee /> : <Navigate to="/" />}
         />
       </Routes>
     </>

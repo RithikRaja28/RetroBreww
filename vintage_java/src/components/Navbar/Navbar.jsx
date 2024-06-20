@@ -59,7 +59,7 @@ const Navbar = ({ user }) => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" to="/brewcoffeee">
               Brew
             </Link>
           </li>
