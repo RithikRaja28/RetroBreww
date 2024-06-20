@@ -136,13 +136,13 @@ const COFFEE_LIST = [
   {
     id: 23,
     name: "Café Cubano",
-    imageUrl: "/images/Café Cubano.png",
+    imageUrl: "/images/Café Zorro.png",
     price: 3.25,
   },
   {
     id: 24,
     name: "Café Zorro",
-    imageUrl: "/images/Café Zorro.png",
+    imageUrl: "/images/Café.png",
     price: 3.75,
   },
 ];

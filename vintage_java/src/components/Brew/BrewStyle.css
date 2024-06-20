@@ -1,0 +1,22 @@
+.btn-coffee {
+  background-color: #d2a679;
+  border-color: #b3834f;
+  color: white;
+}
+
+.btn-coffee:hover {
+  background-color: #b3834f;
+  border-color: #8c6841;
+}
+
+.cardbody {
+  background-color: #f8f1e5;
+}
+
+.cardtitle {
+  color: #5a4632;
+}
+
+.cardtext {
+  color: #7a5c47;
+}
