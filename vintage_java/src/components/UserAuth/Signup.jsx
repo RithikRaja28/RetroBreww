@@ -15,6 +15,18 @@ const Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    if (!email || !password || !name) {
+      toast.error("Please fill in all fields", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -81,7 +93,7 @@ const Signup = () => {
                         className="text-center mb-5 mx-1 mx-md-4 mt-4 text-lg"
                         style={{ fontFamily: "Roboto" }}
                       >
-                        Welcome <br />{" "}
+                        Welcome <br />
                         <span
                           className="fw-bold h1"
                           style={{ color: "#A0522D" }}
@@ -89,7 +101,6 @@ const Signup = () => {
                           RetroBrew
                         </span>
                       </p>
-
                       <form className="mx-1 mx-md-4" onSubmit={handleSignup}>
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="bi bi-person bi-lg me-3 bi-fw"></i>
@@ -151,7 +162,6 @@ const Signup = () => {
                             />
                           </div>
                         </div>
-
                         <div className="form-check d-flex justify-content-center mb-3">
                           <input
                             className="form-check-input me-2"
@@ -176,7 +186,6 @@ const Signup = () => {
                             <Link to="/user-login">Login</Link>
                           </label>
                         </div>
-
                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                           <button
                             className="contactButton"

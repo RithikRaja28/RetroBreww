@@ -1,70 +1,94 @@
 import React from "react";
-import {Link} from 'react-router-dom'
-const Navbar = () => {
-  return (
-    <div>
-      <nav
-        class="navbar navbar-expand-lg navbar-light bg-light"
-        
-      >
-        <a class="m-1" href="/retrobrew">
-          <img
-            src="https://www.freepnglogos.com/uploads/coffee-logo-png/coffee-shop-clipart-images-34.png"
-            width="30"
-            height="30"
-            alt="Brand Logo"
-          />
-        </a>
-        <a
-          class="navbar-brand m-1 mt-2"
-          style={{
-            fontSize: "30px",
-            fontWeight: "bold",
-            textDecoration: "none",
-            fontStyle: "italic",
-            fontFamily: "serif",
-          }}
-          href="#"
-        >
-          <span style={{ color: "#A0522D" }}>R</span>etro
-          <span style={{ color: "#A0522D" }}>B</span>rew
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarTogglerDemo02"
-          aria-controls="navbarTogglerDemo02"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+import { Link, useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../Authentication/Auth"; // Ensure this path is correct
 
-        <div
-          class="collapse navbar-collapse justify-content-center"
-          id="navbarTogglerDemo02"
-        >
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0 justify-content-center">
-            <li class="nav-item">
-              <Link class="nav-link active" to="/retrobrew">
-                Home
-              </Link>
-            </li>
-            <li class="nav-item">
-              <Link class="nav-link active" to="/">
-                Brew
-              </Link>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">
-                Contact Us
-              </a>
-            </li>
-          </ul>
+const Navbar = ({ user }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/"); // Redirect to the login page
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <Link
+        className="navbar-brand m-1"
+        style={{ fontFamily: "fancy", fontSize: "25px", fontWeight: "bold" }}
+        to="/retrobrew"
+      >
+        <img
+          src="https://www.freepnglogos.com/uploads/coffee-logo-png/coffee-shop-clipart-images-34.png"
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+          alt="Brand Logo"
+        />
+        <span style={{ color: "#A0522D" }}>R</span>etro
+        <span style={{ color: "#A0522D" }}>B</span>rew
+      </Link>
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div
+        className="collapse navbar-collapse justify-content-center"
+        id="navbarTogglerDemo02"
+      >
+        <ul className="navbar-nav mr-auto mt-2 mt-lg-0 justify-content-center">
+          <li className="nav-item">
+            <Link className="nav-link active" to="/retrobrew">
+              Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link active" to="/">
+              Brew
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link active" to="/contact">
+              Contact Us
+            </Link>
+          </li>
+        </ul>
+      </div>
+      {user ? (
+        <div className="navbar-text d-flex align-items-center">
+          {user.displayName}
+          <img
+            src="https://www.freeiconspng.com/uploads/account-profile-user-icon--icon-search-engine-10.png"
+            alt="avatar"
+            className="avatar m-2"
+            style={{ borderRadius: "50%", width: "30px", height: "30px" }}
+          />
+          <button
+            className="btn btn-outline-secondary ml-3"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
         </div>
-      </nav>
-    </div>
+      ) : (
+        <div>
+          <Link className="btn btn-outline-primary" to="/user-login">
+            Login
+          </Link>
+        </div>
+      )}
+    </nav>
   );
 };
 
