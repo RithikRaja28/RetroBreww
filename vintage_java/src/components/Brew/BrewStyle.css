@@ -1,3 +1,19 @@
+.cardbody {
+  background-color: #f8f1e5;
+  text-align: center;
+}
+
+.cardtitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #5a4632;
+}
+
+.cardtext {
+  font-size: 1rem;
+  color: #7a5c47;
+}
+
 .btn-coffee {
   background-color: #d2a679;
   border-color: #b3834f;
@@ -9,14 +25,39 @@
   border-color: #8c6841;
 }
 
-.cardbody {
-  background-color: #f8f1e5;
+.avatar {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }
 
-.cardtitle {
-  color: #5a4632;
+.input-group {
+  max-width: 300px;
 }
 
-.cardtext {
-  color: #7a5c47;
+.btn-outline-secondary {
+  position: relative;
+}
+
+.badge-danger {
+  font-size: 0.75rem;
+  padding: 0.5em;
+}
+
+.navbar-text .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+.dropdown-menu a {
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar {
+  margin-bottom: 20px;
 }
