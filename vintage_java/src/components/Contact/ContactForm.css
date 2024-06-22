@@ -1,0 +1,33 @@
+.btn-coffee {
+  background-color: #d2a679;
+  border-color: #b3834f;
+  color: white;
+}
+
+.btn-coffee:hover {
+  background-color: #b3834f;
+  border-color: #8c6841;
+}
+
+.contactcard {
+  border-radius: 10px;
+}
+
+.contactcardbody {
+  padding: 2rem;
+}
+
+.contactformgroup label {
+  font-weight: bold;
+  color: #5a4632;
+}
+
+.contactformcontrol {
+  border-radius: 5px;
+  border: 1px solid #b3834f;
+}
+
+.contactformcontrol:focus {
+  border-color: #d2a679;
+  box-shadow: 0 0 0 0.2rem rgba(210, 166, 121, 0.25);
+}

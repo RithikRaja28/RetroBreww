@@ -17,6 +17,7 @@ import BrewCoffee from "./components/Brew/BrewCoffee";
 import './style.css';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ContactUs from "./components/Contact/ContactUs";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -72,6 +73,10 @@ const App = () => {
         <Route
           path="/brewcoffeee"
           element={user ? <BrewCoffee /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/contact"
+          element={user ? <ContactUs/> : <Navigate to="/" />}
         />
       </Routes>
 
