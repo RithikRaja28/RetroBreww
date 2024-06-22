@@ -31,3 +31,8 @@
   border-color: #d2a679;
   box-shadow: 0 0 0 0.2rem rgba(210, 166, 121, 0.25);
 }
+
+
+.contactimg{
+  border-radius: 10px;
+}

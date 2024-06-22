@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { db } from "../../components/Authentication/Auth"; // Import Firestore instance
+import { collection, addDoc } from "firebase/firestore";
 import "./ContactForm.css";
 
 const ContactForm = () => {
@@ -20,31 +22,43 @@ const ContactForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your form submission logic here
-    toast.success("Your message has been sent!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
+    try {
+      await addDoc(collection(db, "contact"), formData);
+      toast.success("Your message has been sent!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      toast.error("Error sending message: " + error.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   return (
     <div className="container my-5">
       <ToastContainer />
-      <h2 className="text-center mb-4">Contact Us</h2>
-      <div className="row justify-content-center">
-        <div className="col-lg-6">
+      <p className="text-center mb-5 text-uppercase display-6 text-dark font-weight-bold">Expand your horizons with us !</p>
+      <div className="row">
+        <div className="col-md-6">
           <div className="card contactcard shadow-sm">
             <div className="card-body contactcardbody">
               <form onSubmit={handleSubmit}>
@@ -90,6 +104,13 @@ const ContactForm = () => {
               </form>
             </div>
           </div>
+        </div>
+        <div className="col-md-6 d-flex align-items-center">
+          <img
+            src="/images/coffee.jpg" // Replace this with your desired image URL
+            alt="Contact Us"
+            className="img-fluid w-100 h-100 contactimg" 
+          />
         </div>
       </div>
     </div>
