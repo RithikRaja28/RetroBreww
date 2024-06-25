@@ -12,7 +12,6 @@ import "./BrewStyle.css";
 const BrewCoffee = () => {
   const [cart, setCart] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [modalVisible, setModalVisible] = useState(false); // State to manage modal visibility
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,14 +20,6 @@ const BrewCoffee = () => {
     if (modalEl) {
       new window.bootstrap.Modal(modalEl);
     }
-
-    // Event listener for modal hide event
-    modalEl.addEventListener("hidden.bs.modal", handleModalClose);
-
-    return () => {
-      // Cleanup: Remove event listener when component unmounts
-      modalEl.removeEventListener("hidden.bs.modal", handleModalClose);
-    };
   }, []);
 
   const addToCart = (coffee) => {
@@ -56,16 +47,9 @@ const BrewCoffee = () => {
   };
 
   const handleCheckout = () => {
-    // Close the modal
-    setModalVisible(true);
+    // Remove the fade effect
     navigate("/retrobrew-checkout", { state: { cart } });
   };
-
-  const handleModalClose = () => {
-    // Update modal visibility state when the modal is closed
-    setModalVisible(false);
-  };
-
   const filteredCoffees = COFFEE_LIST.filter((coffee) =>
     coffee.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -94,7 +78,6 @@ const BrewCoffee = () => {
             <button
               className="btn btn-secondary position-relative rounded-pill border-0 py-2 px-4"
               type="button"
-              onClick={() => setModalVisible(true)} // Open modal on button click
               data-toggle="modal"
               data-target="#cartModal"
             >
@@ -138,12 +121,12 @@ const BrewCoffee = () => {
 
       {/* Cart Modal */}
       <div
-        className={`modal fade ${modalVisible ? "show" : ""}`} // Conditionally apply "show" class based on modalVisible state
+        className="modal fade"
         id="cartModal"
         tabIndex="-1"
         role="dialog"
         aria-labelledby="cartModalLabel"
-        aria-hidden={!modalVisible} // Hide modal from screen readers when not visible
+        aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
@@ -153,8 +136,8 @@ const BrewCoffee = () => {
               </h5>
               <button
                 type="button"
-                className="close"
-                onClick={() => setModalVisible(false)} // Close modal on close button click
+                className="close rounded-pill border-0 bg-white shadow p-1 m-1 d-flex align-items-center justify-content-center"
+                data-dismiss="modal"
                 aria-label="Close"
               >
                 <span aria-hidden="true">&times;</span>
@@ -183,7 +166,7 @@ const BrewCoffee = () => {
               <button
                 type="button"
                 className="btn btn-secondary"
-                onClick={() => setModalVisible(false)} // Close modal on "Close" button click
+                data-dismiss="modal"
               >
                 Close
               </button>

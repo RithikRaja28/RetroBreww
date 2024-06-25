@@ -69,35 +69,45 @@ const Navbar = ({ user }) => {
             </Link>
           </li>
         </ul>
-      {user && !isAuthPage && (
-        <div className="navbar-text d-flex align-items-center ml-2 m-1">
-          <div className="btn-group dropup">
-            <button
-              type="button"
-              className="btn btn-outline rounded-pill dropdown-toggle d-flex align-items-center m-1"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              {user.displayName}
-              <img
-                src="https://www.freeiconspng.com/uploads/account-profile-user-icon--icon-search-engine-10.png"
-                alt="avatar"
-                className="avatar ms-2"
-              />
-            </button>
-            <div className="dropdown-menu dropdown-menu-right">
-              <Link className="dropdown-item m-1" to="/dashboard">
-                Dashboard
-              </Link>
-              <div className="dropdown-divider"></div>
-              <button className="dropdown-item m-1" onClick={handleLogout}>
-                Logout
+        {user && !isAuthPage && (
+          <div className="navbar-text d-flex align-items-center ml-2 m-1">
+            <div className="btn-group dropup">
+              <button
+                type="button"
+                className="btn btn-outline rounded-pill dropdown-toggle d-flex align-items-center m-1 rounded shadow-sm"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                style={{
+                  padding: "0.5rem 1rem",
+                  fontSize: "1rem",
+                  fontWeight: "normal",
+                  borderRadius: "0.25rem",
+
+                  backgroundColor: "#d2a679",
+                  borderColor: "#d2a679",
+                  color: "#fff",
+                }}
+              >
+                {user.displayName}
+                <img
+                  src="https://www.freeiconspng.com/uploads/account-profile-user-icon--icon-search-engine-10.png"
+                  alt="avatar"
+                  className="avatar ms-2 rounded-circle shadow-sm"
+                />
               </button>
+              <div className="dropdown-menu dropdown-menu-right m-1 p-1 bg-light rounded shadow">
+                <Link className="dropdown-item m-1" to="/dashboard">
+                  Dashboard
+                </Link>
+                <div className="dropdown-divider"></div>
+                <button className="dropdown-item m-1" onClick={handleLogout}>
+                  Logout
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
       </div>
       {!user && !isAuthPage && (
         <div>
