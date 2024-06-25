@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import COFFEE_LIST from "../../constant/content";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -7,14 +8,42 @@ import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./BrewStyle.css";
-import { Navigate } from "react-router";
 
 const BrewCoffee = () => {
   const [cart, setCart] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [modalVisible, setModalVisible] = useState(false); // State to manage modal visibility
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Initialize Bootstrap Modal manually
+    const modalEl = document.getElementById("cartModal");
+    if (modalEl) {
+      new window.bootstrap.Modal(modalEl);
+    }
+
+    // Event listener for modal hide event
+    modalEl.addEventListener("hidden.bs.modal", handleModalClose);
+
+    return () => {
+      // Cleanup: Remove event listener when component unmounts
+      modalEl.removeEventListener("hidden.bs.modal", handleModalClose);
+    };
+  }, []);
 
   const addToCart = (coffee) => {
-    setCart([...cart, coffee]);
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.id === coffee.id);
+      if (existingItem) {
+        return prevCart.map((item) =>
+          item.id === coffee.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        return [...prevCart, { ...coffee, quantity: 1 }];
+      }
+    });
     toast.success(`${coffee.name} added to cart!`, {
       position: "top-right",
       autoClose: 3000,
@@ -24,6 +53,17 @@ const BrewCoffee = () => {
       draggable: true,
       progress: undefined,
     });
+  };
+
+  const handleCheckout = () => {
+    // Close the modal
+    setModalVisible(true);
+    navigate("/retrobrew-checkout", { state: { cart } });
+  };
+
+  const handleModalClose = () => {
+    // Update modal visibility state when the modal is closed
+    setModalVisible(false);
   };
 
   const filteredCoffees = COFFEE_LIST.filter((coffee) =>
@@ -54,13 +94,14 @@ const BrewCoffee = () => {
             <button
               className="btn btn-secondary position-relative rounded-pill border-0 py-2 px-4"
               type="button"
+              onClick={() => setModalVisible(true)} // Open modal on button click
               data-toggle="modal"
               data-target="#cartModal"
             >
               <FontAwesomeIcon icon={faShoppingCart} />
               {cart.length > 0 && (
                 <span className="badge badge-dark position-absolute top-0 start-100 translate-middle rounded-pill text-dark mt-1 ms-1">
-                  {cart.length}
+                  {cart.reduce((total, item) => total + item.quantity, 0)}
                 </span>
               )}
             </button>
@@ -97,12 +138,12 @@ const BrewCoffee = () => {
 
       {/* Cart Modal */}
       <div
-        className="modal fade"
+        className={`modal fade ${modalVisible ? "show" : ""}`} // Conditionally apply "show" class based on modalVisible state
         id="cartModal"
         tabIndex="-1"
         role="dialog"
         aria-labelledby="cartModalLabel"
-        aria-hidden="true"
+        aria-hidden={!modalVisible} // Hide modal from screen readers when not visible
       >
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
@@ -113,7 +154,7 @@ const BrewCoffee = () => {
               <button
                 type="button"
                 className="close"
-                data-dismiss="modal"
+                onClick={() => setModalVisible(false)} // Close modal on close button click
                 aria-label="Close"
               >
                 <span aria-hidden="true">&times;</span>
@@ -129,9 +170,9 @@ const BrewCoffee = () => {
                       key={index}
                       className="list-group-item d-flex justify-content-between align-items-center"
                     >
-                      {coffee.name}
+                      {coffee.name} - Qty: {coffee.quantity}
                       <span className="badge badge-primary badge-pill">
-                        ${coffee.price.toFixed(2)}
+                        ${(coffee.price * coffee.quantity).toFixed(2)}
                       </span>
                     </li>
                   ))}
@@ -142,11 +183,15 @@ const BrewCoffee = () => {
               <button
                 type="button"
                 className="btn btn-secondary"
-                data-dismiss="modal"
+                onClick={() => setModalVisible(false)} // Close modal on "Close" button click
               >
                 Close
               </button>
-              <button type="button" className="btn btn-coffee" >
+              <button
+                type="button"
+                className="btn btn-coffee"
+                onClick={handleCheckout}
+              >
                 Checkout
               </button>
             </div>

@@ -1,0 +1,36 @@
+.ch-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #f8f1e5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #5a4632;
+}
+
+.list-group-item {
+  background-color: #f8f1e5;
+  border: none;
+  color: #5a4632;
+  font-weight: bold;
+}
+
+.list-group-item .badge {
+  background-color: #b3834f;
+}
+
+.btn-coffee {
+  background-color: #d2a679;
+  border-color: #b3834f;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-coffee:hover {
+  background-color: #b3834f;
+  border-color: #8c6841;
+}
