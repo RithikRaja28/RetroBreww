@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./BrewStyle.css";
+import { Navigate } from "react-router";
 
 const BrewCoffee = () => {
   const [cart, setCart] = useState([]);
@@ -38,7 +39,7 @@ const BrewCoffee = () => {
           <div className="input-group mr-2">
             <input
               type="text"
-              className="form-control rounded-pill border-1 shadow-sm py-2 px-4" 
+              className="form-control rounded-pill border-1 shadow-sm py-2 px-4"
               placeholder="Search Coffee"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -93,14 +94,8 @@ const BrewCoffee = () => {
           </div>
         ))}
       </div>
-      {/* LEarn */}
-
-      
-
-       
 
       {/* Cart Modal */}
-
       <div
         className="modal fade"
         id="cartModal"
@@ -109,7 +104,7 @@ const BrewCoffee = () => {
         aria-labelledby="cartModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog" role="document">
+        <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="cartModalLabel">
@@ -130,8 +125,14 @@ const BrewCoffee = () => {
               ) : (
                 <ul className="list-group">
                   {cart.map((coffee, index) => (
-                    <li key={index} className="list-group-item">
-                      {coffee.name} - ${coffee.price.toFixed(2)}
+                    <li
+                      key={index}
+                      className="list-group-item d-flex justify-content-between align-items-center"
+                    >
+                      {coffee.name}
+                      <span className="badge badge-primary badge-pill">
+                        ${coffee.price.toFixed(2)}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -144,6 +145,9 @@ const BrewCoffee = () => {
                 data-dismiss="modal"
               >
                 Close
+              </button>
+              <button type="button" className="btn btn-coffee" >
+                Checkout
               </button>
             </div>
           </div>

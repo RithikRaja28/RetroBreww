@@ -1,16 +1,19 @@
 .cardbody {
   background-color: #f8f1e5;
   text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cardtitle {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #5a4632;
 }
 
 .cardtext {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #7a5c47;
 }
 
@@ -18,6 +21,8 @@
   background-color: #d2a679;
   border-color: #b3834f;
   color: white;
+  font-weight: bold;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .btn-coffee:hover {
@@ -25,32 +30,13 @@
   border-color: #8c6841;
 }
 
-.avatar {
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-}
-
 .input-group {
   max-width: 300px;
 }
 
-.btn-outline-secondary {
-  position: relative;
-}
-
-.badge-danger {
-  font-size: 0.75rem;
-  padding: 0.5em;
-}
-
-.navbar-text .dropdown-menu {
-  left: auto;
-  right: 0;
-}
-
-.dropdown-menu a {
-  text-align: center;
+.badge-dark {
+  background-color: #d2a679;
+  color: white;
 }
 
 .container {
@@ -60,4 +46,36 @@
 
 .navbar {
   margin-bottom: 20px;
+}
+
+.modal-content {
+  border-radius: 10px;
+  background-color: #f8f1e5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header, .modal-footer {
+  background-color: #d2a679;
+  color: white;
+}
+
+.modal-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.badge-primary {
+  background-color: #d2a679;
+  color: white;
+}
+
+.list-group-item {
+  background-color: #f8f1e5;
+  border: none;
+  color: #5a4632;
+  font-weight: bold;
+}
+
+.list-group-item .badge {
+  background-color: #b3834f;
 }

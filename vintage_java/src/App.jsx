@@ -18,6 +18,7 @@ import './style.css';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ContactUs from "./components/Contact/ContactUs";
+import Checkout from "./components/Checkout/Checkout";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -77,6 +78,10 @@ const App = () => {
         <Route
           path="/contact"
           element={user ? <ContactUs/> : <Navigate to="/" />}
+        />
+        <Route
+          path="/retrobrew-checkout"
+          element={user ? <Checkout/> : <Navigate to="/" />}
         />
       </Routes>
 
