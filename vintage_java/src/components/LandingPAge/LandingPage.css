@@ -1,32 +1,117 @@
-.carousel-item img {
+/* Unique class names to avoid CSS overlap */
+
+.landing-page .carousel-section {
+  margin-bottom: 2rem;
+}
+
+.landing-page .carousel-image {
   height: 60vh;
   object-fit: cover;
 }
 
-.card-title {
-  color: #d2a679;
+.landing-page .carousel-title {
+  font-size: 2rem;
   font-weight: bold;
+  color: #fff;
 }
 
-.card-text {
-  color: #5a4632;
+.landing-page .carousel-text {
+  font-size: 1.25rem;
+  color: #fff;
 }
 
-.btn-primary {
+.landing-page .welcome-section .welcome-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.landing-page .welcome-section .welcome-text {
+  color: #555;
+}
+
+.landing-page .featured-coffees-section .featured-coffee-card {
+  transition: transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.landing-page .featured-coffees-section .featured-coffee-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.landing-page .featured-coffee-img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.landing-page .featured-coffee-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.landing-page .featured-coffee-text {
+  color: #555;
+}
+
+.landing-page .featured-coffee-btn {
   background-color: #d2a679;
   border-color: #d2a679;
 }
 
-.btn-primary:hover {
+.landing-page .featured-coffee-btn:hover {
   background-color: #b3834f;
   border-color: #b3834f;
 }
 
-blockquote {
+.landing-page .testimonials-section .testimonials-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.landing-page .testimonials-section .testimonials-lead {
+  color: #555;
+}
+
+.landing-page .testimonial-card {
+  background-color: #f8f9fa;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.landing-page .testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.landing-page .testimonial-text {
   font-size: 1.2rem;
   color: #5a4632;
 }
 
-.blockquote-footer {
+.landing-page .testimonial-footer {
   font-size: 0.9rem;
+  color: #8d6e63;
+}
+
+.landing-page .cta-section .cta-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.landing-page .cta-section .cta-text {
+  color: #555;
+}
+
+.landing-page .cta-section .cta-btn {
+  background-color: #d2a679;
+  border-color: #d2a679;
+}
+
+.landing-page .cta-section .cta-btn:hover {
+  background-color: #b3834f;
+  border-color: #b3834f;
 }
