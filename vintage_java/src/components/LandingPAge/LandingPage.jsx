@@ -57,7 +57,7 @@ const LandingPage = () => {
         </Carousel>
 
         <Container className="welcome-section text-center my-5">
-          <h2 className="welcome-title">Welcome to RetroBrew</h2>
+          
           <p className="welcome-text lead">
             At RetroBrew, we bring you the finest coffee experience. Whether
             you're looking for a place to relax, work, or catch up with friends,
@@ -66,15 +66,15 @@ const LandingPage = () => {
         </Container>
 
         <Container className="featured-coffees-section my-5">
-          <Row>
-            <Col md={4} className="mb-4">
-              <Card className="featured-coffee-card">
+          <Row className="d-flex justify-content-center">
+            <Col md={4} className="mb-4 d-flex">
+              <Card className="featured-coffee-card flex-fill">
                 <Card.Img
                   variant="top"
                   src="images/espresso.png"
                   className="featured-coffee-img"
                 />
-                <Card.Body>
+                <Card.Body className="d-flex flex-column">
                   <Card.Title className="featured-coffee-title">
                     Espresso
                   </Card.Title>
@@ -84,21 +84,21 @@ const LandingPage = () => {
                   <Button
                     variant="primary"
                     onClick={handleLearnMore}
-                    className="featured-coffee-btn"
+                    className="featured-coffee-btn mt-auto"
                   >
                     Learn More
                   </Button>
                 </Card.Body>
               </Card>
             </Col>
-            <Col md={4} className="mb-4">
-              <Card className="featured-coffee-card">
+            <Col md={4} className="mb-4 d-flex">
+              <Card className="featured-coffee-card flex-fill">
                 <Card.Img
                   variant="top"
                   src="images/Latte.png"
                   className="featured-coffee-img"
                 />
-                <Card.Body>
+                <Card.Body className="d-flex flex-column">
                   <Card.Title className="featured-coffee-title">
                     Latte
                   </Card.Title>
@@ -108,21 +108,21 @@ const LandingPage = () => {
                   <Button
                     variant="primary"
                     onClick={handleLearnMore}
-                    className="featured-coffee-btn"
+                    className="featured-coffee-btn mt-auto"
                   >
                     Learn More
                   </Button>
                 </Card.Body>
               </Card>
             </Col>
-            <Col md={4} className="mb-4">
-              <Card className="featured-coffee-card">
+            <Col md={4} className="mb-4 d-flex">
+              <Card className="featured-coffee-card flex-fill">
                 <Card.Img
                   variant="top"
                   src="images/Cappuccino.png"
                   className="featured-coffee-img"
                 />
-                <Card.Body>
+                <Card.Body className="d-flex flex-column">
                   <Card.Title className="featured-coffee-title">
                     Cappuccino
                   </Card.Title>
@@ -132,7 +132,7 @@ const LandingPage = () => {
                   <Button
                     variant="primary"
                     onClick={handleLearnMore}
-                    className="featured-coffee-btn"
+                    className="featured-coffee-btn mt-auto"
                   >
                     Learn More
                   </Button>
@@ -147,9 +147,9 @@ const LandingPage = () => {
           <p className="testimonials-lead lead">
             Hear from our happy customers
           </p>
-          <Row>
-            <Col md={4} className="mb-4">
-              <Card className="testimonial-card p-3">
+          <Row className="d-flex justify-content-center">
+            <Col md={4} className="mb-4 d-flex">
+              <Card className="testimonial-card flex-fill p-3">
                 <Card.Body>
                   <blockquote className="blockquote mb-0">
                     <p className="testimonial-text">
@@ -166,8 +166,8 @@ const LandingPage = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col md={4} className="mb-4">
-              <Card className="testimonial-card p-3">
+            <Col md={4} className="mb-4 d-flex">
+              <Card className="testimonial-card flex-fill p-3">
                 <Card.Body>
                   <blockquote className="blockquote mb-0">
                     <p className="testimonial-text">
@@ -184,8 +184,8 @@ const LandingPage = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col md={4} className="mb-4">
-              <Card className="testimonial-card p-3">
+            <Col md={4} className="mb-4 d-flex">
+              <Card className="testimonial-card flex-fill p-3">
                 <Card.Body>
                   <blockquote className="blockquote mb-0">
                     <p className="testimonial-text">
