@@ -1,0 +1,32 @@
+.carousel-item img {
+  height: 60vh;
+  object-fit: cover;
+}
+
+.card-title {
+  color: #d2a679;
+  font-weight: bold;
+}
+
+.card-text {
+  color: #5a4632;
+}
+
+.btn-primary {
+  background-color: #d2a679;
+  border-color: #d2a679;
+}
+
+.btn-primary:hover {
+  background-color: #b3834f;
+  border-color: #b3834f;
+}
+
+blockquote {
+  font-size: 1.2rem;
+  color: #5a4632;
+}
+
+.blockquote-footer {
+  font-size: 0.9rem;
+}
