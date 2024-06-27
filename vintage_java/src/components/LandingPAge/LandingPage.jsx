@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import "./LandingPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Footer from "../Footer/Footer";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -215,6 +216,7 @@ const LandingPage = () => {
             Contact Us
           </Button>
         </Container>
+        <Footer />
       </div>
     </div>
   );
