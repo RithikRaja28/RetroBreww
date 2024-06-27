@@ -14,11 +14,12 @@ import { onAuthStateChanged } from "firebase/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import BrewCoffee from "./components/Brew/BrewCoffee";
-import './style.css';
+import "./style.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ContactUs from "./components/Contact/ContactUs";
 import Checkout from "./components/Checkout/Checkout";
+import Dashboard from "./components/User Dashboard/Dashboard";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -52,7 +53,7 @@ const App = () => {
 
   return (
     <>
-    <ToastContainer />
+      <ToastContainer />
       <Navbar user={user} />
       <Routes>
         <Route
@@ -77,14 +78,17 @@ const App = () => {
         />
         <Route
           path="/contact"
-          element={user ? <ContactUs/> : <Navigate to="/" />}
+          element={user ? <ContactUs /> : <Navigate to="/" />}
         />
         <Route
           path="/retrobrew-checkout"
-          element={user ? <Checkout/> : <Navigate to="/" />}
+          element={user ? <Checkout /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/retrobrew-user-dashboard"
+          element={user ? <Dashboard  user={user}/> : <Navigate to="/" />}
         />
       </Routes>
-
     </>
   );
 };

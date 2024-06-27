@@ -45,6 +45,7 @@ const Signup = () => {
         uid: user.uid,
         displayName: name,
         email: user.email,
+        points: 0, // Initialize points to 0 for new users
       });
 
       toast.success("Account created successfully!", {

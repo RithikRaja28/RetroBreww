@@ -1,0 +1,91 @@
+/* Dashboard Container */
+.dashboard-container {
+  background-color: #f5f5f5; /* Light background color */
+  min-height: 100vh; /* Ensure full height */
+  padding: 20px 0; /* Padding for content */
+}
+
+/* Dashboard Card */
+.dashboard-card {
+  background-color: #ffffff; /* White background */
+  border: 1px solid #ced4da; /* Light border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 20px; /* Padding inside the card */
+}
+
+/* Spinner Container */
+.spinner-container {
+  height: 100vh; /* Full height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 100px; /* Adjust size as needed */
+  height: 100px; /* Adjust size as needed */
+}
+
+/* Dashboard List Item */
+.dashboard-list-item {
+  background-color: #f8f9fa; /* Lighter background for list items */
+  border: none; /* Remove border */
+  padding: 10px 15px; /* Padding for list items */
+  margin-bottom: 10px; /* Spacing between items */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.dashboard-list-item:last-child {
+  margin-bottom: 0; /* No margin for the last item */
+}
+
+/* Edit Profile Button */
+.text-center .btn {
+  background-color: #d2a679; /* Primary color for button */
+  border-color: #d2a679; /* Border color */
+}
+
+.text-center .btn:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  border-color: #0056b3; /* Darker border on hover */
+}
+
+.text-center .btn-secondary {
+  background-color: #6c757d; /* Secondary color for button */
+  border-color: #6c757d; /* Border color */
+}
+
+.text-center .btn-secondary:hover {
+  background-color: #5a6268; /* Darker shade on hover */
+  border-color: #5a6268; /* Darker border on hover */
+}
+
+/* Recent Activity Widget */
+.dashboard-widget {
+  background-color: #ffffff; /* White background */
+  border: 1px solid #ced4da; /* Light border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 20px; /* Padding inside the widget */
+  margin-top: 20px; /* Spacing from above card */
+}
+
+.dashboard-widget h2 {
+  margin-bottom: 20px; /* Spacing below heading */
+}
+
+/* Activity List */
+.activity-list {
+  list-style-type: none; /* Remove default list style */
+  padding: 0; /* Remove default padding */
+}
+
+.activity-item {
+  padding: 10px 0; /* Padding for each activity item */
+  border-bottom: 1px solid #e9ecef; /* Light border between items */
+}
+
+.activity-item:last-child {
+  border-bottom: none; /* No border for the last item */
+}

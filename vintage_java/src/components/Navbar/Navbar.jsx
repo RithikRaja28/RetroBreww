@@ -97,7 +97,10 @@ const Navbar = ({ user }) => {
                 />
               </button>
               <div className="dropdown-menu dropdown-menu-right m-1 p-1 bg-light rounded shadow">
-                <Link className="dropdown-item m-1" to="/dashboard">
+                <Link
+                  className="dropdown-item m-1"
+                  to="/retrobrew-user-dashboard"
+                >
                   Dashboard
                 </Link>
                 <div className="dropdown-divider"></div>
