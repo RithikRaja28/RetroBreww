@@ -82,11 +82,11 @@ const App = () => {
         />
         <Route
           path="/retrobrew-checkout"
-          element={user ? <Checkout /> : <Navigate to="/" />}
+          element={user ? <Checkout user={user} /> : <Navigate to="/" />}
         />
         <Route
           path="/retrobrew-user-dashboard"
-          element={user ? <Dashboard  user={user}/> : <Navigate to="/" />}
+          element={user ? <Dashboard user={user} /> : <Navigate to="/" />}
         />
       </Routes>
     </>

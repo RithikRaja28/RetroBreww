@@ -4,16 +4,16 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
-  Form,
-  Button,
   Container,
   Row,
   Col,
   Card,
   ListGroup,
+  Button,
+  Form,
 } from "react-bootstrap";
-import "./Dashboard.css"; // Custom CSS for additional styling
-import { db } from "../Authentication/Auth"; // Ensure correct path to auth and db
+import { db } from "../Authentication/Auth"; // Adjust path if needed
+import "./Dashboard.css"; // Adjust CSS path as needed
 
 const Dashboard = ({ user }) => {
   const [userData, setUserData] = useState(null);
@@ -30,10 +30,11 @@ const Dashboard = ({ user }) => {
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setUserData(docSnap.data());
+          const userData = docSnap.data();
+          setUserData(userData);
           setFormValues({
-            displayName: docSnap.data().displayName,
-            email: docSnap.data().email,
+            displayName: userData.displayName,
+            email: userData.email,
           });
         } else {
           console.log("No such document!");
@@ -136,7 +137,8 @@ const Dashboard = ({ user }) => {
                         <strong>Email:</strong> {userData.email}
                       </ListGroup.Item>
                       <ListGroup.Item className="dashboard-list-item">
-                        <strong>Points:</strong> {userData.points}
+                        <strong>Points:</strong> {userData.points || 0}{" "}
+                        {/* Ensure points display correctly */}
                       </ListGroup.Item>
                     </ListGroup>
 

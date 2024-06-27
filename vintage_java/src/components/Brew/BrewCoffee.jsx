@@ -47,9 +47,9 @@ const BrewCoffee = () => {
   };
 
   const handleCheckout = () => {
-    // Remove the fade effect
     navigate("/retrobrew-checkout", { state: { cart } });
   };
+
   const filteredCoffees = COFFEE_LIST.filter((coffee) =>
     coffee.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -105,7 +105,7 @@ const BrewCoffee = () => {
               <div className="card-body cardbody">
                 <h5 className="card-title cardtitle">{coffee.name}</h5>
                 <p className="card-text cardtext">
-                  Price: ${coffee.price.toFixed(2)}
+                  Price: ₹{coffee.price.toFixed(2)}
                 </p>
                 <button
                   className="btn btn-coffee"
@@ -155,7 +155,7 @@ const BrewCoffee = () => {
                     >
                       {coffee.name} - Qty: {coffee.quantity}
                       <span className="badge badge-primary badge-pill">
-                        ${(coffee.price * coffee.quantity).toFixed(2)}
+                        ₹{(coffee.price * coffee.quantity).toFixed(2)}
                       </span>
                     </li>
                   ))}
