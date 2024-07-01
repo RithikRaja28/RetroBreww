@@ -3,7 +3,6 @@ import { Carousel, Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import "./LandingPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Footer from "../Footer/Footer";
 import { motion } from "framer-motion";
 
@@ -21,7 +20,7 @@ const LandingPage = () => {
       className="landing-page"
     >
       <div className="container-fluid p-0">
-        <motion.div className="carousel-section" >
+        <motion.div className="carousel-section">
           <Carousel className="carousel-section">
             <Carousel.Item>
               <img
@@ -77,102 +76,101 @@ const LandingPage = () => {
             we have the perfect ambiance for you.
           </p>
         </motion.Container>
-        
-          <Container className="featured-coffees-section my-5">
-            <Row className="d-flex justify-content-center">
-              <Col md={4} className="mb-4 d-flex">
-                <motion.div
-                  whileInView={{ opacity: 1, x: 0 }}
-                  initial={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 1 }}
-                >
-                  <Card className="featured-coffee-card flex-fill">
-                    <Card.Img
-                      variant="top"
-                      src="images/espresso.png"
-                      className="featured-coffee-img"
-                    />
-                    <Card.Body className="d-flex flex-column">
-                      <Card.Title className="featured-coffee-title">
-                        Espresso
-                      </Card.Title>
-                      <Card.Text className="featured-coffee-text">
-                        A rich and strong coffee to kickstart your day.
-                      </Card.Text>
-                      <Button
-                        variant="primary"
-                        onClick={handleLearnMore}
-                        className="featured-coffee-btn mt-auto"
-                      >
-                        Learn More
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </motion.div>
-              </Col>
-              <Col md={4} className="mb-4 d-flex">
-                <motion.div
-                  whileInView={{ opacity: 1, x: 0 }}
-                  initial={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 1.5 }}
-                >
-                  <Card className="featured-coffee-card flex-fill">
-                    <Card.Img
-                      variant="top"
-                      src="images/Latte.png"
-                      className="featured-coffee-img"
-                    />
-                    <Card.Body className="d-flex flex-column">
-                      <Card.Title className="featured-coffee-title">
-                        Latte
-                      </Card.Title>
-                      <Card.Text className="featured-coffee-text">
-                        Smooth and creamy, perfect for a relaxing.
-                      </Card.Text>
-                      <Button
-                        variant="primary"
-                        onClick={handleLearnMore}
-                        className="featured-coffee-btn mt-auto"
-                      >
-                        Learn More
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </motion.div>
-              </Col>
-              <Col md={4} className="mb-4 d-flex">
-                <motion.div
-                  whileInView={{ opacity: 1, x: 0 }}
-                  initial={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 1.9 }}
-                >
-                  <Card className="featured-coffee-card flex-fill">
-                    <Card.Img
-                      variant="top"
-                      src="images/Cappuccino.png"
-                      className="featured-coffee-img"
-                    />
-                    <Card.Body className="d-flex flex-column">
-                      <Card.Title className="featured-coffee-title">
-                        Cappuccino
-                      </Card.Title>
-                      <Card.Text className="featured-coffee-text">
-                        A perfect blend of coffee and frothy milk.
-                      </Card.Text>
-                      <Button
-                        variant="primary"
-                        onClick={handleLearnMore}
-                        className="featured-coffee-btn mt-auto"
-                      >
-                        Learn More
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </motion.div>
-              </Col>
-            </Row>
-          </Container>
-       
+
+        <Container className="featured-coffees-section my-5">
+          <Row className="d-flex justify-content-center">
+            <Col md={6} lg={4} className="mb-4 d-flex">
+              <motion.div
+                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: -100 }}
+                transition={{ duration: 1 }}
+              >
+                <Card className="featured-coffee-card flex-fill">
+                  <Card.Img
+                    variant="top"
+                    src="images/espresso.png"
+                    className="featured-coffee-img"
+                  />
+                  <Card.Body className="d-flex flex-column">
+                    <Card.Title className="featured-coffee-title">
+                      Espresso
+                    </Card.Title>
+                    <Card.Text className="featured-coffee-text">
+                      A rich and strong coffee to kickstart your day.
+                    </Card.Text>
+                    <Button
+                      variant="primary"
+                      onClick={handleLearnMore}
+                      className="featured-coffee-btn mt-auto"
+                    >
+                      Learn More
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </motion.div>
+            </Col>
+            <Col md={6} lg={4} className="mb-4 d-flex">
+              <motion.div
+                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: -100 }}
+                transition={{ duration: 1.5 }}
+              >
+                <Card className="featured-coffee-card flex-fill">
+                  <Card.Img
+                    variant="top"
+                    src="images/Latte.png"
+                    className="featured-coffee-img"
+                  />
+                  <Card.Body className="d-flex flex-column">
+                    <Card.Title className="featured-coffee-title">
+                      Latte
+                    </Card.Title>
+                    <Card.Text className="featured-coffee-text">
+                      Smooth and creamy, perfect for a relaxing break.
+                    </Card.Text>
+                    <Button
+                      variant="primary"
+                      onClick={handleLearnMore}
+                      className="featured-coffee-btn mt-auto"
+                    >
+                      Learn More
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </motion.div>
+            </Col>
+            <Col md={6} lg={4} className="mb-4 d-flex">
+              <motion.div
+                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: -100 }}
+                transition={{ duration: 1.9 }}
+              >
+                <Card className="featured-coffee-card flex-fill">
+                  <Card.Img
+                    variant="top"
+                    src="images/Cappuccino.png"
+                    className="featured-coffee-img"
+                  />
+                  <Card.Body className="d-flex flex-column">
+                    <Card.Title className="featured-coffee-title">
+                      Cappuccino
+                    </Card.Title>
+                    <Card.Text className="featured-coffee-text">
+                      A perfect blend of coffee and frothy milk.
+                    </Card.Text>
+                    <Button
+                      variant="primary"
+                      onClick={handleLearnMore}
+                      className="featured-coffee-btn mt-auto"
+                    >
+                      Learn More
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </motion.div>
+            </Col>
+          </Row>
+        </Container>
 
         <Container className="testimonials-section text-center my-5">
           <motion.h2
@@ -192,7 +190,7 @@ const LandingPage = () => {
             Hear from our happy customers
           </motion.p>
           <Row className="d-flex justify-content-center">
-            <Col md={4} className="mb-4 d-flex">
+            <Col md={6} lg={4} className="mb-4 d-flex">
               <motion.div
                 whileInView={{ opacity: 1, x: 0 }}
                 initial={{ opacity: 0, x: 100 }}
@@ -216,7 +214,7 @@ const LandingPage = () => {
                 </Card>
               </motion.div>
             </Col>
-            <Col md={4} className="mb-4 d-flex">
+            <Col md={6} lg={4} className="mb-4 d-flex">
               <motion.div
                 whileInView={{ opacity: 1, x: 0 }}
                 initial={{ opacity: 0, x: 100 }}
@@ -240,7 +238,7 @@ const LandingPage = () => {
                 </Card>
               </motion.div>
             </Col>
-            <Col md={4} className="mb-4 d-flex">
+            <Col md={6} lg={4} className="mb-4 d-flex">
               <motion.div
                 whileInView={{ opacity: 1, x: 0 }}
                 initial={{ opacity: 0, x: 100 }}
@@ -283,7 +281,7 @@ const LandingPage = () => {
             className="cta-text lead"
           >
             Contact us for our newsletter to stay updated with our latest offers
-            and events and also to expand the business.
+            and events.
           </motion.p>
           <motion.div
             whileInView={{ opacity: 1, y: 0 }}

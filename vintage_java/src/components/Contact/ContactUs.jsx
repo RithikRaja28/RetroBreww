@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { db } from "../../components/Authentication/Auth"; // Import Firestore instance
 import { collection, addDoc } from "firebase/firestore";
+import { motion } from "framer-motion";
 import "./ContactForm.css";
 
 const ContactForm = () => {
@@ -54,17 +55,37 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="container my-5">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="container my-5"
+    >
       <ToastContainer />
-      <p className="text-center mb-5 text-uppercase display-6 text-dark font-weight-bold">Expand your horizons with us !</p>
+      <motion.p
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="text-center mb-5 text-uppercase display-6 text-dark font-weight-bold"
+      >
+        Expand your horizons with us!
+      </motion.p>
       <div className="row">
-        <div className="col-md-6">
+        <motion.div
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="col-md-6"
+        >
           <div className="card contactcard shadow-sm">
             <div className="card-body contactcardbody">
               <form onSubmit={handleSubmit}>
                 <div className="form-group mb-3 contactformgroup">
                   <label htmlFor="name">Name</label>
-                  <input
+                  <motion.input
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5 }}
                     type="text"
                     className="form-control contactformcontrol"
                     id="name"
@@ -76,7 +97,10 @@ const ContactForm = () => {
                 </div>
                 <div className="form-group mb-3 contactformgroup">
                   <label htmlFor="email">Email</label>
-                  <input
+                  <motion.input
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
                     type="email"
                     className="form-control contactformcontrol"
                     id="email"
@@ -88,7 +112,10 @@ const ContactForm = () => {
                 </div>
                 <div className="form-group mb-3 contactformgroup">
                   <label htmlFor="message">Message</label>
-                  <textarea
+                  <motion.textarea
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
                     className="form-control contactformcontrol"
                     id="message"
                     name="message"
@@ -96,24 +123,35 @@ const ContactForm = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                  ></textarea>
+                  ></motion.textarea>
                 </div>
-                <button type="submit" className="btn btn-coffee btn-block mt-3">
+                <motion.button
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  type="submit"
+                  className="btn btn-coffee btn-block mt-3"
+                >
                   Send Message
-                </button>
+                </motion.button>
               </form>
             </div>
           </div>
-        </div>
-        <div className="col-md-6 d-flex align-items-center">
+        </motion.div>
+        <motion.div
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="col-md-6 d-flex align-items-center"
+        >
           <img
             src="/images/coffee.jpg" // Replace this with your desired image URL
             alt="Contact Us"
-            className="img-fluid w-100 h-100 contactimg" 
+            className="img-fluid w-100 h-100 contactimg"
           />
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

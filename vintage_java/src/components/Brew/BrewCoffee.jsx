@@ -7,6 +7,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import "./BrewStyle.css";
 
 const BrewCoffee = () => {
@@ -15,7 +17,6 @@ const BrewCoffee = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Initialize Bootstrap Modal manually
     const modalEl = document.getElementById("cartModal");
     if (modalEl) {
       new window.bootstrap.Modal(modalEl);
@@ -55,7 +56,7 @@ const BrewCoffee = () => {
   );
 
   return (
-    <div className="container">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="container">
       <ToastContainer />
       <div className="d-flex justify-content-between align-items-center my-3">
         <p className="h6">Coffee Menu</p>
@@ -94,28 +95,7 @@ const BrewCoffee = () => {
 
       <div className="row">
         {filteredCoffees.map((coffee) => (
-          <div key={coffee.id} className="col-lg-3 col-md-4 col-sm-6 mb-4">
-            <div className="card">
-              <img
-                className="card-img-top"
-                src={coffee.imageUrl}
-                alt={coffee.name}
-                style={{ height: "200px", objectFit: "cover" }}
-              />
-              <div className="card-body cardbody">
-                <h5 className="card-title cardtitle">{coffee.name}</h5>
-                <p className="card-text cardtext">
-                  Price: ₹{coffee.price.toFixed(2)}
-                </p>
-                <button
-                  className="btn btn-coffee"
-                  onClick={() => addToCart(coffee)}
-                >
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
+          <CoffeeCard key={coffee.id} coffee={coffee} addToCart={addToCart} />
         ))}
       </div>
 
@@ -181,7 +161,42 @@ const BrewCoffee = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
+  );
+};
+
+const CoffeeCard = ({ coffee, addToCart }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 100 }}
+      animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 100 }}
+      transition={{ duration: 0.5 }}
+      className="col-lg-3 col-md-4 col-sm-6 mb-4"
+    >
+      <div className="card">
+        <img
+          className="card-img-top"
+          src={coffee.imageUrl}
+          alt={coffee.name}
+          style={{ height: "200px", objectFit: "cover" }}
+        />
+        <div className="card-body cardbody">
+          <h5 className="card-title cardtitle">{coffee.name}</h5>
+          <p className="card-text cardtext">
+            Price: ₹{coffee.price.toFixed(2)}
+          </p>
+          <button className="btn btn-coffee" onClick={() => addToCart(coffee)}>
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </motion.div>
   );
 };
 

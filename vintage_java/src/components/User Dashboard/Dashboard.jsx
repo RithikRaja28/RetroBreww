@@ -13,6 +13,7 @@ import {
   Form,
 } from "react-bootstrap";
 import { db } from "../Authentication/Auth"; // Adjust path if needed
+import { motion } from "framer-motion";
 import "./Dashboard.css"; // Adjust CSS path as needed
 
 const Dashboard = ({ user }) => {
@@ -120,92 +121,126 @@ const Dashboard = ({ user }) => {
       <Container className="mt-5">
         <Row className="justify-content-center">
           <Col md={8}>
-            <Card className="dashboard-card">
-              <Card.Body>
-                <Row className="mb-4">
-                  <Col>
-                    <h1 className="text-center">
-                      Welcome, {userData.displayName}!
-                    </h1>
-                  </Col>
-                </Row>
-
-                {!editMode ? (
-                  <>
-                    <ListGroup className="mb-4">
-                      <ListGroup.Item className="dashboard-list-item">
-                        <strong>Email:</strong> {userData.email}
-                      </ListGroup.Item>
-                      <ListGroup.Item className="dashboard-list-item">
-                        <strong>Points:</strong> {userData.points || 0}{" "}
-                        {/* Ensure points display correctly */}
-                      </ListGroup.Item>
-                    </ListGroup>
-
-                    <div className="text-center">
-                      <Button
-                        className="btn"
-                        style={{ backgroundColor: "#d2a679" }}
-                        onClick={handleEdit}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Card className="dashboard-card">
+                <Card.Body>
+                  <Row className="mb-4">
+                    <Col>
+                      <motion.h1
+                        className="text-center"
+                        initial={{ y: -50, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
                       >
-                        Edit Profile
-                      </Button>
-                    </div>
-                  </>
-                ) : (
-                  <Form>
-                    <Form.Group controlId="formDisplayName">
-                      <Form.Label>Display Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Enter display name"
-                        name="displayName"
-                        value={formValues.displayName}
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
+                        Welcome, {userData.displayName}!
+                      </motion.h1>
+                    </Col>
+                  </Row>
 
-                    <Form.Group controlId="formEmail">
-                      <Form.Label>Email address</Form.Label>
-                      <Form.Control
-                        type="email"
-                        placeholder="Enter email"
-                        name="email"
-                        value={formValues.email}
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
+                  {!editMode ? (
+                    <>
+                      <ListGroup className="mb-4">
+                        <ListGroup.Item className="dashboard-list-item">
+                          <strong>Email:</strong> {userData.email}
+                        </ListGroup.Item>
+                        <ListGroup.Item className="dashboard-list-item">
+                          <strong>Points:</strong> {userData.points || 0}{" "}
+                          {/* Ensure points display correctly */}
+                        </ListGroup.Item>
+                      </ListGroup>
 
-                    <div className="text-center">
-                      <Button
-                        style={{ backgroundColor: "#d2a679" }}
-                        onClick={handleSave}
-                      >
-                        Save
-                      </Button>
-                      <Button
-                        variant="secondary"
-                        onClick={handleCancel}
-                        className="ms-2"
-                      >
-                        Cancel
-                      </Button>
-                    </div>
-                  </Form>
-                )}
-              </Card.Body>
-            </Card>
+                      <div className="text-center">
+                        <motion.button
+                          className="btn"
+                          style={{ backgroundColor: "#d2a679" }}
+                          onClick={handleEdit}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.5, delay: 0.4 }}
+                        >
+                          Edit Profile
+                        </motion.button>
+                      </div>
+                    </>
+                  ) : (
+                    <Form>
+                      <Form.Group controlId="formDisplayName">
+                        <Form.Label>Display Name</Form.Label>
+                        <motion.input
+                          type="text"
+                          className="form-control"
+                          placeholder="Enter display name"
+                          name="displayName"
+                          value={formValues.displayName}
+                          onChange={handleChange}
+                          initial={{ x: -100, opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          transition={{ duration: 0.5, delay: 0.1 }}
+                        />
+                      </Form.Group>
 
-            <Card className="mt-4 dashboard-widget">
-              <Card.Body>
-                <h2 className="text-center">Your Recent Activity</h2>
-                <ul className="activity-list">
-                  <li className="activity-item">
-                    <strong>12 June 2024:</strong> Uploaded new content
-                  </li>
-                </ul>
-              </Card.Body>
-            </Card>
+                      <Form.Group controlId="formEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <motion.input
+                          type="email"
+                          className="form-control"
+                          placeholder="Enter email"
+                          name="email"
+                          value={formValues.email}
+                          onChange={handleChange}
+                          initial={{ x: -100, opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                        />
+                      </Form.Group>
+
+                      <div className="text-center">
+                        <motion.button
+                          style={{ backgroundColor: "#d2a679" }}
+                          onClick={handleSave}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
+                        >
+                          Save
+                        </motion.button>
+                        <motion.button
+                          variant="secondary"
+                          onClick={handleCancel}
+                          className="ms-2"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.5, delay: 0.4 }}
+                        >
+                          Cancel
+                        </motion.button>
+                      </div>
+                    </Form>
+                  )}
+                </Card.Body>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              <Card className="mt-4 dashboard-widget">
+                <Card.Body>
+                  <h2 className="text-center">Your Recent Activity</h2>
+                  <ul className="activity-list">
+                    <li className="activity-item">
+                      <strong>12 June 2024:</strong> Uploaded new content
+                    </li>
+                  </ul>
+                </Card.Body>
+              </Card>
+            </motion.div>
           </Col>
         </Row>
       </Container>
