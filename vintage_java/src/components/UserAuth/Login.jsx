@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../components/Authentication/Auth";
 import { ToastContainer, toast } from "react-toastify";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
+import "./Login.css";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
@@ -86,7 +85,12 @@ const Login = () => {
             <div className="col-lg-12 col-xl-11">
               <div className="card text-black" style={{ borderRadius: "25px" }}>
                 <div className="card-body p-md-5">
-                  <div className="row justify-content-center">
+                  <motion.div
+                    className="row justify-content-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  >
                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                       <p
                         className="text-center mb-5 mx-1 mx-md-4 mt-4 text-lg"
@@ -101,7 +105,12 @@ const Login = () => {
                         </span>
                       </p>
                       <form className="mx-1 mx-md-4" onSubmit={handleLogin}>
-                        <div className="d-flex flex-row align-items-center mb-4">
+                        <motion.div
+                          className="d-flex flex-row align-items-center mb-4"
+                          initial={{ opacity: 0, x: -50 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.8, delay: 0.3 }}
+                        >
                           <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div
                             data-mdb-input-init
@@ -120,8 +129,13 @@ const Login = () => {
                               onChange={(e) => setEmail(e.target.value)}
                             />
                           </div>
-                        </div>
-                        <div className="d-flex flex-row align-items-center mb-4">
+                        </motion.div>
+                        <motion.div
+                          className="d-flex flex-row align-items-center mb-4"
+                          initial={{ opacity: 0, x: -50 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.8, delay: 0.4 }}
+                        >
                           <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                           <div
                             data-mdb-input-init
@@ -140,8 +154,13 @@ const Login = () => {
                               onChange={(e) => setPassword(e.target.value)}
                             />
                           </div>
-                        </div>
-                        <div className="form-check d-flex justify-content-center mb-5">
+                        </motion.div>
+                        <motion.div
+                          className="form-check d-flex justify-content-center mb-5"
+                          initial={{ opacity: 0, x: -50 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.8, delay: 0.5 }}
+                        >
                           <input
                             className="form-check-input me-2"
                             type="checkbox"
@@ -155,8 +174,13 @@ const Login = () => {
                             I agree all statements in{" "}
                             <a href="#!">Terms of service</a>
                           </label>
-                        </div>
-                        <div className="d-flex justify-content-center mx-2 mb-1 mb-lg-4">
+                        </motion.div>
+                        <motion.div
+                          className="d-flex justify-content-center mx-2 mb-1 mb-lg-4"
+                          initial={{ opacity: 0, x: -50 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.8, delay: 0.6 }}
+                        >
                           <label
                             className="text-muted"
                             htmlFor="form2Example3c"
@@ -164,8 +188,13 @@ const Login = () => {
                             Don't have an Account{" "}
                             <Link to="/user-signup">Register</Link>
                           </label>
-                        </div>
-                        <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        </motion.div>
+                        <motion.div
+                          className="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
+                          initial={{ opacity: 0, x: -50 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.8, delay: 0.7 }}
+                        >
                           <button
                             className="contactButton"
                             data-mdb-button-init
@@ -188,17 +217,22 @@ const Login = () => {
                               </svg>
                             </div>
                           </button>
-                        </div>
+                        </motion.div>
                       </form>
                     </div>
-                    <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                    <motion.div
+                      className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                    >
                       <img
                         src="https://cdn.pixabay.com/photo/2020/04/06/13/37/coffee-5009730_1280.png"
                         className="img-fluid"
                         alt="RetroBrew"
                       />
-                    </div>
-                  </div>
+                    </motion.div>
+                  </motion.div>
                 </div>
               </div>
             </div>

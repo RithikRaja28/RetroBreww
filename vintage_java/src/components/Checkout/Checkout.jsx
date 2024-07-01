@@ -7,7 +7,7 @@ import "./Checkout.css";
 
 const GST_RATE = 0.05; // 5% GST
 const POINTS_THRESHOLD = 100;
-const POINTS_REWARD = 15;
+const POINTS_REWARD = 10;
 
 const Checkout = ({ user }) => {
   const location = useLocation();
@@ -53,9 +53,7 @@ const Checkout = ({ user }) => {
           draggable: true,
           progress: undefined,
         });
-
-        
-      } 
+      }
 
       toast.success("Order placed successfully!", {
         position: "top-center",
@@ -83,7 +81,6 @@ const Checkout = ({ user }) => {
       });
     }
   };
-
 
   return (
     <div className="ch-container p-3 mx-auto w-75 shadow rounded">
