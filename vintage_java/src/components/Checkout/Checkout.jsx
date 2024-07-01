@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getFirestore, doc, updateDoc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, updateDoc, getDoc , collection, addDoc} from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Checkout.css";
@@ -25,6 +25,7 @@ const Checkout = ({ user }) => {
 
   const handlePlaceOrder = async () => {
     const userRef = doc(db, "users", user.uid);
+    const ordersCollection = collection(db, "data");
 
     try {
       // Fetch latest user data from Firestore
@@ -55,6 +56,17 @@ const Checkout = ({ user }) => {
         });
       }
 
+      // Store order data in Firestore
+      const orderData = {
+        userId: user.uid,
+        items: cart,
+        totalAmount: total,
+        gst: gst,
+        grandTotal: grandTotal,
+        timestamp: new Date().toISOString(),
+      };
+      await addDoc(ordersCollection, orderData);
+
       toast.success("Order placed successfully!", {
         position: "top-center",
         autoClose: 3000,
@@ -64,6 +76,7 @@ const Checkout = ({ user }) => {
         draggable: true,
         progress: undefined,
       });
+
       // Redirect to homepage after 4 seconds
       setTimeout(() => {
         navigate("/retrobrew");

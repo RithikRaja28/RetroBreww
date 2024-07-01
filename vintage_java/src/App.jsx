@@ -20,6 +20,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ContactUs from "./components/Contact/ContactUs";
 import Checkout from "./components/Checkout/Checkout";
 import Dashboard from "./components/User Dashboard/Dashboard";
+import DailySalesReport from "./components/utils/DisplaySales";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -88,6 +89,12 @@ const App = () => {
           path="/retrobrew-user-dashboard"
           element={user ? <Dashboard user={user} /> : <Navigate to="/" />}
         />
+        {user && user.email === "admin@gmail.com" && (
+          <Route
+            path="/retrobrew-reports"
+            element={<DailySalesReport />} // Adjust this to your actual Reports component
+          />
+        )}
       </Routes>
     </>
   );
