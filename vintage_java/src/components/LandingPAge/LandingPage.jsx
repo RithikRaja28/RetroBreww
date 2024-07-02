@@ -289,7 +289,7 @@ const LandingPage = () => {
             transition={{ duration: 0.7 }}
             className="cta-btn-container"
           >
-            <Button variant="primary" className="cta-btn">
+            <Button variant="primary" onClick={() => navigate("/contact")} className="cta-btn">
               Contact Us
             </Button>
           </motion.div>
