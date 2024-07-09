@@ -3,6 +3,8 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Footer.css";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -30,7 +32,7 @@ const Footer = () => {
                   Menu
                 </a>
               </li>
-              
+
               <li>
                 <a href="/contact" className="footer-link">
                   Contact
@@ -61,6 +63,28 @@ const Footer = () => {
             <p className="footer-text mb-0">
               &copy; {new Date().getFullYear()} RetroBrew. All Rights Reserved.
             </p>
+          </Col>
+          <Col>
+
+            <p className="footer-text mb-0">
+              Designed and Developed by Rithik Raja S
+            </p>
+            <div className="d-flex justify-content-center mb-3">
+              <Link
+                target="_blank"
+                to="https://www.linkedin.com/in/rithik-raja-s/"
+                className="m-2"
+              >
+                <FaLinkedin size={24} />
+              </Link>
+              <Link
+                target="_blank"
+                to="https://github.com/RithikRaja28"
+                className="m-2"
+              >
+                <FaGithub size={24} className="text-dark" />
+              </Link>
+            </div>
           </Col>
         </Row>
       </Container>

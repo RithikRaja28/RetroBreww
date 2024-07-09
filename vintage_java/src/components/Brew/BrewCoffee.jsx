@@ -10,6 +10,7 @@ import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import "./BrewStyle.css";
+import Footer from "../Footer/Footer";
 
 const BrewCoffee = () => {
   const [cart, setCart] = useState([]);
@@ -56,112 +57,119 @@ const BrewCoffee = () => {
   );
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="container">
-      <ToastContainer />
-      <div className="d-flex justify-content-between align-items-center my-3">
-        <p className="h6">Coffee Menu</p>
-        <div className="d-flex">
-          <div className="input-group mr-2">
-            <input
-              type="text"
-              className="form-control rounded-pill border-1 shadow-sm py-2 px-4"
-              placeholder="Search Coffee"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <div className="input-group-append rounded-pill border-0 py-2 px-4 bg-white">
-              <span className="input-group-text">
-                <FontAwesomeIcon icon={faSearch} />
-              </span>
-            </div>
-          </div>
-          <div>
-            <button
-              className="btn btn-secondary position-relative rounded-pill border-0 py-2 px-4"
-              type="button"
-              data-toggle="modal"
-              data-target="#cartModal"
-            >
-              <FontAwesomeIcon icon={faShoppingCart} />
-              {cart.length > 0 && (
-                <span className="badge badge-dark position-absolute top-0 start-100 translate-middle rounded-pill text-dark mt-1 ms-1">
-                  {cart.reduce((total, item) => total + item.quantity, 0)}
-                </span>
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div className="row">
-        {filteredCoffees.map((coffee) => (
-          <CoffeeCard key={coffee.id} coffee={coffee} addToCart={addToCart} />
-        ))}
-      </div>
-
-      {/* Cart Modal */}
-      <div
-        className="modal fade"
-        id="cartModal"
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby="cartModalLabel"
-        aria-hidden="true"
+    <div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="container"
       >
-        <div className="modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="cartModalLabel">
-                Cart
-              </h5>
-              <button
-                type="button"
-                className="close rounded-pill border-0 bg-white shadow p-1 m-1 d-flex align-items-center justify-content-center"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
+        <ToastContainer />
+        <div className="d-flex justify-content-between align-items-center my-3">
+          <p className="h6">Coffee Menu</p>
+          <div className="d-flex">
+            <div className="input-group mr-2">
+              <input
+                type="text"
+                className="form-control rounded-pill border-1 shadow-sm py-2 px-4"
+                placeholder="Search Coffee"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <div className="input-group-append rounded-pill border-0 py-2 px-4 bg-white">
+                <span className="input-group-text">
+                  <FontAwesomeIcon icon={faSearch} />
+                </span>
+              </div>
             </div>
-            <div className="modal-body">
-              {cart.length === 0 ? (
-                <p>Your cart is empty.</p>
-              ) : (
-                <ul className="list-group">
-                  {cart.map((coffee, index) => (
-                    <li
-                      key={index}
-                      className="list-group-item d-flex justify-content-between align-items-center"
-                    >
-                      {coffee.name} - Qty: {coffee.quantity}
-                      <span className="badge badge-primary badge-pill">
-                        ₹{(coffee.price * coffee.quantity).toFixed(2)}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-            <div className="modal-footer">
+            <div>
               <button
+                className="btn btn-secondary position-relative rounded-pill border-0 py-2 px-4"
                 type="button"
-                className="btn btn-secondary"
-                data-dismiss="modal"
+                data-toggle="modal"
+                data-target="#cartModal"
               >
-                Close
-              </button>
-              <button
-                type="button"
-                className="btn btn-coffee"
-                onClick={handleCheckout}
-              >
-                Checkout
+                <FontAwesomeIcon icon={faShoppingCart} />
+                {cart.length > 0 && (
+                  <span className="badge badge-dark position-absolute top-0 start-100 translate-middle rounded-pill text-dark mt-1 ms-1">
+                    {cart.reduce((total, item) => total + item.quantity, 0)}
+                  </span>
+                )}
               </button>
             </div>
           </div>
         </div>
-      </div>
-    </motion.div>
+
+        <div className="row">
+          {filteredCoffees.map((coffee) => (
+            <CoffeeCard key={coffee.id} coffee={coffee} addToCart={addToCart} />
+          ))}
+        </div>
+
+        {/* Cart Modal */}
+        <div
+          className="modal fade"
+          id="cartModal"
+          tabIndex="-1"
+          role="dialog"
+          aria-labelledby="cartModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="cartModalLabel">
+                  Cart
+                </h5>
+                <button
+                  type="button"
+                  className="close rounded-pill border-0 bg-white shadow p-1 m-1 d-flex align-items-center justify-content-center"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                {cart.length === 0 ? (
+                  <p>Your cart is empty.</p>
+                ) : (
+                  <ul className="list-group">
+                    {cart.map((coffee, index) => (
+                      <li
+                        key={index}
+                        className="list-group-item d-flex justify-content-between align-items-center"
+                      >
+                        {coffee.name} - Qty: {coffee.quantity}
+                        <span className="badge badge-primary badge-pill">
+                          ₹{(coffee.price * coffee.quantity).toFixed(2)}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-coffee"
+                  onClick={handleCheckout}
+                >
+                  Checkout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+      <Footer />
+    </div>
   );
 };
 
