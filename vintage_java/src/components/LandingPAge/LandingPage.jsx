@@ -195,6 +195,7 @@ const LandingPage = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 initial={{ opacity: 0, x: 100 }}
                 transition={{ duration: 0.9 }}
+                  
               >
                 <Card className="testimonial-card flex-fill p-3">
                   <Card.Body>
@@ -219,6 +220,7 @@ const LandingPage = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 initial={{ opacity: 0, x: 100 }}
                 transition={{ duration: 1 }}
+               
               >
                 <Card className="testimonial-card flex-fill p-3">
                   <Card.Body>
