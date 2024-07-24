@@ -3,7 +3,7 @@
   margin-bottom: 2rem;
 }
 
-.landing-page .carousel-image {
+.landing-page .carousel-image { 
   height: 60vh;
   object-fit: cover;
 }

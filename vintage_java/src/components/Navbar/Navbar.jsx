@@ -59,7 +59,7 @@ const Navbar = ({ user }) => {
         id="navbarTogglerDemo02"
       >
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0 justify-content-center">
-          {["/retrobrew", "/brewcoffeee", "/contact"].map((path, index) => (
+          {["/retrobrew", "/brewcoffeee", "/contact","report"].map((path, index) => (
             <motion.li
               key={index}
               className="nav-item"
@@ -72,7 +72,11 @@ const Navbar = ({ user }) => {
                   ? "Home"
                   : path === "/brewcoffeee"
                   ? "Brew"
-                  : "Contact Us"}
+                  : path === "/contact"
+                  ? "Contact"
+                  : "Report"}
+                  
+            
               </Link>
             </motion.li>
           ))}

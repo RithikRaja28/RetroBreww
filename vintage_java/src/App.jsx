@@ -21,6 +21,7 @@ import ContactUs from "./components/Contact/ContactUs";
 import Checkout from "./components/Checkout/Checkout";
 import Dashboard from "./components/User Dashboard/Dashboard";
 import DailySalesReport from "./components/utils/DisplaySales";
+import SalesReport from "./components/SalesReport/SalesReport";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -95,6 +96,10 @@ const App = () => {
             element={<DailySalesReport />} // Adjust this to your actual Reports component
           />
         )}
+        <Route
+          path="/report"
+          element={user ? <SalesReport user={user} /> : <Navigate to="/" />}
+        />
       </Routes>
     </>
   );
