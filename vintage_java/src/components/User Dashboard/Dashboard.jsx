@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+  orderBy,
+  limit,
+  collection,
+} from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -11,6 +21,7 @@ import {
   ListGroup,
   Button,
   Form,
+  Badge,
 } from "react-bootstrap";
 import { db } from "../Authentication/Auth"; // Adjust path if needed
 import { motion } from "framer-motion";
@@ -18,6 +29,7 @@ import "./Dashboard.css"; // Adjust CSS path as needed
 
 const Dashboard = ({ user }) => {
   const [userData, setUserData] = useState(null);
+  const [recentOrders, setRecentOrders] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [formValues, setFormValues] = useState({
     displayName: "",
@@ -45,10 +57,30 @@ const Dashboard = ({ user }) => {
       }
     };
 
+    const fetchRecentOrders = async () => {
+      try {
+        const q = query(
+          collection(db, "data"),
+          where("userId", "==", user.uid),
+          orderBy("timestamp", "desc"),
+          limit(5)
+        );
+        const querySnapshot = await getDocs(q);
+        const orders = [];
+        querySnapshot.forEach((doc) => {
+          orders.push({ id: doc.id, ...doc.data() });
+        });
+        setRecentOrders(orders);
+      } catch (error) {
+        console.log("Error fetching orders:", error);
+      }
+    };
+
     if (user) {
+      fetchRecentOrders();
       fetchUserData();
     } else {
-      navigate("/user-login"); // Redirect to login if no user is logged in
+      navigate("/user-login");
     }
   }, [user, navigate]);
 
@@ -149,7 +181,6 @@ const Dashboard = ({ user }) => {
                         </ListGroup.Item>
                         <ListGroup.Item className="dashboard-list-item">
                           <strong>Points:</strong> {userData.points || 0}{" "}
-                          {/* Ensure points display correctly */}
                         </ListGroup.Item>
                       </ListGroup>
 
@@ -226,6 +257,7 @@ const Dashboard = ({ user }) => {
             </motion.div>
 
             <motion.div
+              className="mt-4"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
@@ -233,11 +265,25 @@ const Dashboard = ({ user }) => {
               <Card className="mt-4 dashboard-widget">
                 <Card.Body>
                   <h2 className="text-center">Your Recent Activity</h2>
-                  <ul className="activity-list">
-                    <li className="activity-item">
-                      <strong>12 June 2024:</strong> Uploaded new content
-                    </li>
-                  </ul>
+                  <ListGroup className="">
+                    {recentOrders.map((order, index) => (
+                      <ListGroup.Item key={index} className="m-1 rounded-pill">
+                        <div className="d-flex justify-content-between align-items-center">
+                          <div>
+                            <strong>{new Date(order.timestamp).toLocaleDateString()}</strong>: Order ID: {order.id}
+                          </div>
+                          <div>
+                            <Badge bg="info" className="me-2 p-2">
+                              Total: ₹{order.totalAmount}
+                            </Badge>
+                            <Badge bg={order.totalAmount > 100 ? "success" : "secondary"}>
+                              Points Added: {order.totalAmount > 100 ? 10 : 0}
+                            </Badge>
+                          </div>
+                        </div>
+                      </ListGroup.Item>
+                    ))}
+                  </ListGroup>
                 </Card.Body>
               </Card>
             </motion.div>
@@ -249,3 +295,4 @@ const Dashboard = ({ user }) => {
 };
 
 export default Dashboard;
+ 
