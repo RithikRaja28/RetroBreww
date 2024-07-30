@@ -89,3 +89,58 @@
 .activity-item:last-child {
   border-bottom: none; /* No border for the last item */
 }
+
+.dashboard-container {
+  min-height: 100vh;
+
+  color: #ffffff;
+}
+
+.dashboard-card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-list-item {
+
+  border: none;
+}
+
+.btn {
+  color: #ffffff;
+ 
+  border: none;
+}
+
+.activity-list .activity-item {
+  
+  border: none;
+  color: #6c757d;
+}
+
+.activity-item strong {
+  color: #6c757d;
+}
+
+.spinner-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
