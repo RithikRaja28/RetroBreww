@@ -267,20 +267,32 @@ const Dashboard = ({ user }) => {
                   <h2 className="text-center">Your Recent Activity</h2>
                   <ListGroup className="">
                     {recentOrders.map((order, index) => (
-                      <ListGroup.Item key={index} className="m-1 rounded-pill">
-                        <div className="d-flex justify-content-between align-items-center">
-                          <div>
-                            <strong>{new Date(order.timestamp).toLocaleDateString()}</strong>: Order ID: {order.id}
-                          </div>
-                          <div>
+                      <ListGroup.Item
+                        key={index}
+                        className="m-2 rounded shadow-sm activity-item"
+                      >
+                        <Row className="d-flex align-items-center">
+                          <Col xs={8} className="order-info">
+                            <strong>
+                              {new Date(order.timestamp).toLocaleDateString()}
+                            </strong>
+                            : Order ID: {order.id}
+                          </Col>
+                          <Col xs={4} className="">
                             <Badge bg="info" className="me-2 p-2">
                               Total: ₹{order.totalAmount}
                             </Badge>
-                            <Badge bg={order.totalAmount > 100 ? "success" : "secondary"}>
-                              Points Added: {order.totalAmount > 100 ? 10 : 0}
+                            <Badge
+                              bg={
+                                order.totalAmount > 100
+                                  ? "success"
+                                  : "secondary"
+                              }
+                            >
+                              Points: {order.totalAmount > 100 ? 10 : 0}
                             </Badge>
-                          </div>
-                        </div>
+                          </Col>
+                        </Row>
                       </ListGroup.Item>
                     ))}
                   </ListGroup>
@@ -295,4 +307,3 @@ const Dashboard = ({ user }) => {
 };
 
 export default Dashboard;
- 

@@ -11,7 +11,7 @@
   border: 1px solid #ced4da; /* Light border */
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  padding: 20px; /* Padding inside the card */
+  padding: 15px; /* Padding inside the card */
 }
 
 /* Spinner Container */
@@ -67,27 +67,37 @@
   border: 1px solid #ced4da; /* Light border */
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  padding: 20px; /* Padding inside the widget */
-  margin-top: 20px; /* Spacing from above card */
+  padding: 10px;/* Padding inside the widget */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  
+  
 }
 
 .dashboard-widget h2 {
   margin-bottom: 20px; /* Spacing below heading */
+
+  color: #5a4632;
 }
 
 /* Activity List */
 .activity-list {
   list-style-type: none; /* Remove default list style */
-  padding: 0; /* Remove default padding */
+  padding: 10px; /* Remove default padding */
+
 }
 
 .activity-item {
   padding: 10px 0; /* Padding for each activity item */
-  border-bottom: 1px solid #e9ecef; /* Light border between items */
+  border-bottom: 1px solid #e9ecef;
+
+ 
+
 }
 
 .activity-item:last-child {
   border-bottom: none; /* No border for the last item */
+
 }
 
 .dashboard-container {
@@ -99,6 +109,7 @@
 .dashboard-card {
   border: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
 }
 
 .dashboard-list-item {
@@ -113,12 +124,14 @@
 }
 
 .activity-list .activity-item {
-  
+  padding: 10px;
   border: none;
   color: #6c757d;
+  margin: 10px;
 }
 
 .activity-item strong {
+  padding: 10px;
   color: #6c757d;
 }
 
