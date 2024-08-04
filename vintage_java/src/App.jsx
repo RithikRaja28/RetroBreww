@@ -89,7 +89,7 @@ const App = () => {
   return (
     <>
       <ToastContainer />
-      <Navbar user={user} />
+      <Navbar user={user} isAdmin={isAdmin}/>
       <Routes>
         <Route
           path="/"

@@ -5,7 +5,7 @@ import { auth } from "../Authentication/Auth"; // Ensure this path is correct
 import { motion, AnimatePresence } from "framer-motion";
 import "./navbar.css"; // Custom CSS for Navbar styling
 
-const Navbar = ({ user }) => {
+const Navbar = ({ user, isAdmin }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -59,27 +59,38 @@ const Navbar = ({ user }) => {
         id="navbarTogglerDemo02"
       >
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0 justify-content-center">
-          {["/retrobrew", "/brewcoffeee", "/contact","report"].map((path, index) => (
+          {!isAdmin ? (
+            <>
+              {["/retrobrew", "/brewcoffeee", "/contact"].map((path, index) => (
+                <motion.li
+                  key={index}
+                  className="nav-item"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index, duration: 0.3 }}
+                >
+                  <Link className="nav-link" to={path}>
+                    {path === "/retrobrew"
+                      ? "Home"
+                      : path === "/brewcoffeee"
+                      ? "Brew"
+                      : "Contact"}
+                  </Link>
+                </motion.li>
+              ))}
+            </>
+          ) : (
             <motion.li
-              key={index}
               className="nav-item"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * index, duration: 0.3 }}
+              transition={{ delay: 0.1, duration: 0.3 }}
             >
-              <Link className="nav-link" to={path}>
-                {path === "/retrobrew"
-                  ? "Home"
-                  : path === "/brewcoffeee"
-                  ? "Brew"
-                  : path === "/contact"
-                  ? "Contact"
-                  : "Report"}
-                  
-            
+              <Link className="nav-link" to="/report">
+                Report
               </Link>
             </motion.li>
-          ))}
+          )}
         </ul>
         {user && !isAuthPage && (
           <div className="navbar-text d-flex align-items-center ml-2 m-1">
