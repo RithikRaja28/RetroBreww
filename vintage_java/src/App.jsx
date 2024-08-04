@@ -8,8 +8,8 @@ import {
 import LandingPage from "./components/LandingPAge/LandingPage";
 import Login from "./components/UserAuth/Login";
 import Signup from "./components/UserAuth/Signup";
-import Navbar from "./components/Navbar/Navbar"; // Ensure this path is correct
-import { auth } from "./components/Authentication/Auth"; // Ensure this path is correct
+import Navbar from "./components/Navbar/Navbar";
+import { auth } from "./components/Authentication/Auth";
 import { onAuthStateChanged } from "firebase/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -22,16 +22,49 @@ import Checkout from "./components/Checkout/Checkout";
 import Dashboard from "./components/User Dashboard/Dashboard";
 import DailySalesReport from "./components/utils/DisplaySales";
 import SalesReport from "./components/SalesReport/SalesReport";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "./components/Authentication/Auth";
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("User state changed: ", currentUser); // Add logging to debug
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      console.log("User state changed: ", currentUser);
       setUser(currentUser);
       setLoading(false);
+
+      if (currentUser) {
+        try {
+          console.log("Current User UID:", currentUser.uid);
+
+          // Create a reference to the role document
+          const roleDocRef = doc(db, "roles", currentUser.uid);
+          console.log("Role Document Path:", roleDocRef.path);
+
+          // Fetch the role document
+          const userRoleDoc = await getDoc(roleDocRef);
+          console.log("User role document data:", userRoleDoc.data());
+
+          if (userRoleDoc.exists()) {
+            const data = userRoleDoc.data();
+            console.log("Document exists and data:", data);
+
+            // Set isAdmin based on the fetched role document
+            setIsAdmin(data.isAdmin === true);
+          } else {
+            console.log("No such document!");
+            setIsAdmin(false);
+          }
+        } catch (error) {
+          console.error("Error checking admin status:", error);
+          setIsAdmin(false);
+        }
+      } else {
+        setIsAdmin(false);
+      }
     });
 
     // Cleanup subscription on unmount
@@ -90,16 +123,13 @@ const App = () => {
           path="/retrobrew-user-dashboard"
           element={user ? <Dashboard user={user} /> : <Navigate to="/" />}
         />
-        {user && user.email === "admin@gmail.com" && (
+        {isAdmin && (
           <Route
-            path="/retrobrew-reports"
-            element={<DailySalesReport />} // Adjust this to your actual Reports component
+            path="/report"
+            element={<SalesReport user={user} />} // Admin route
           />
         )}
-        <Route
-          path="/report"
-          element={user ? <SalesReport user={user} /> : <Navigate to="/" />}
-        />
+       
       </Routes>
     </>
   );
