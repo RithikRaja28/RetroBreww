@@ -24,6 +24,7 @@ import DailySalesReport from "./components/utils/DisplaySales";
 import SalesReport from "./components/SalesReport/SalesReport";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "./components/Authentication/Auth";
+import Error404 from "./components/404Page/Error404";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -129,6 +130,8 @@ const App = () => {
             element={<SalesReport user={user} />} // Admin route
           />
         )}
+
+        <Route path="*" element={<Error404 />} />
        
       </Routes>
     </>
